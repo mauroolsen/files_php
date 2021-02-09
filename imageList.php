@@ -13,9 +13,12 @@ if (file_exists($dir)) {
 ?>
         <div class="card col-sm-3 m-2">
             <div class="car-body my-1">
-                <a class="btn btn-danger" href="#">Eliminar</a>
+                <form action="action/delete.php" method="POST">
+                    <input type="hidden" name="imagen" value="<?=$dir . $image;?>">
+                    <button type="submit" name="submit" class="btn btn-danger">Eliminar</button>
+                </form>
             </div>
-            <img src="<?= $dir . $image ?>" class="card-img-top my-1" alt="<?= $image ?>" srcset="">
+            <img src="<?= $dir . $image ?>" class="card-img-top my-1" alt="<?=$image ?>" srcset="">
         </div>
 
 <?php
