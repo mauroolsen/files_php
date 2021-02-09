@@ -2,6 +2,7 @@
 require('includes/images.php');
 
 $dir = 'uploads\\default\\';
+$imagenes = array();
 if (file_exists($dir)) {
     $imagenes = getImagenes($dir);
     $i = 0;
