@@ -16,7 +16,7 @@ function getImagenes($directorio)
 function isImage($image)
 {
   $ext = pathinfo($image, PATHINFO_EXTENSION);
-  if (!$ext == ('jpeg' || 'png')) {
+  if (!(($ext == 'jpeg') || ($ext == 'png'))) {
     $ext = false;
   }
   return $ext;

@@ -2,7 +2,12 @@
 function subir($fileName, $filePath)
 {
     $message = false;
-    if (move_uploaded_file($fileName, $filePath)) {
+    $pathInfo = pathinfo($filePath, PATHINFO_EXTENSION);
+    if (
+        (($pathInfo == 'png') || ($pathInfo == 'jpeg'))
+        &&
+        (move_uploaded_file($fileName, $filePath))
+    ) {
         $message = true;
     }
     return $message;
@@ -26,5 +31,5 @@ function validarPath($path)
 function redireccion($message)
 {
     $message = ($message) ? 'true' : 'false';
-    header('Location: index.php?message=' . strval($message));
+    header('Location: ../index.php?message=' . strval($message));
 }

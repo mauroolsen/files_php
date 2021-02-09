@@ -1,9 +1,9 @@
 <?php
-require('includes/files.php');
+require('../includes/files.php');
 if (isset($_POST['submit'])) {
     $message = false;
     if (isset($_FILES['file'])) {
-        $uploadPath = 'uploads/default/';
+        $uploadPath = '../uploads/default/';
         validarPath($uploadPath);
         $fileName = $_FILES['file']['tmp_name'];
         $targetfileName = basename($_FILES['file']['name']);

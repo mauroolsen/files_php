@@ -1,7 +1,7 @@
 <?php
 require('includes/images.php');
 
-$dir = 'uploads/default/';
+$dir = 'uploads\\default\\';
 if (file_exists($dir)) {
     $imagenes = getImagenes($dir);
     $i = 0;

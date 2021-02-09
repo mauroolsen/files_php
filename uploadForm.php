@@ -7,9 +7,10 @@ if (isset($_GET['message'])) {
     }
 }
 ?>
-<form class="form m-2" action="upload.php" method="POST" enctype="multipart/form-data">
+<form class="form m-2" action="action/upload.php" method="POST" enctype="multipart/form-data">
     <div class="form-group">
-        <input class="form-control-files" type="file" name="file">
+        <label for="file">Imágenes en formato .png/.jpeg</label>
+        <input class="form-control-files" type="file" id="file" name="file">
     </div>
     <button class="btn btn-primary" type="submit" name="submit">UPLOAD</button>
 </form>
