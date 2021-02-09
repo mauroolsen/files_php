@@ -25,7 +25,7 @@ function validarArchivo($filePath)
 function validarPath($path)
 {
     if (!file_exists($path))
-        mkdir($path);
+        mkdir($path, 0777, true); // creo mas de una carpeta
 }
 
 function redireccion($message)
