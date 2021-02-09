@@ -1,35 +1,23 @@
 <?php
-$dir = 'uploads\\';
+require('includes/images.php');
 
-function showImage($image){
-    echo '
-    <img class="img-thumbnail col-2" src="'. $image .'" alt="'. $image .'" srcset="">
-    ';
-}
-function showImageGray($image){
-    $ext = pathinfo($image, PATHINFO_EXTENSION);
-    switch($ext){
-        case 'png':
-            $imageCreated = imagecreatefrompng($image);
-            break;
-        case 'jpeg':
-            //rename($image, str_replace('.jpg', '.jpeg', $image));
-            //var_dump($image);
-            return 0;
-            $imageCreated = imagecreatefromjpeg($image);
-            break;
-    }
-    imagefilter($imageCreated, IMG_FILTER_GRAYSCALE);
-    $functionDisplayImage = 'image' . 'png';
-    $functionDisplayImage($imageCreated, $image);
-}
+$dir = 'uploads/default/';
+if (file_exists($dir)) {
+    $imagenes = getImagenes($dir);
+    $i = 0;
+    echo '<div class="row">';
+    foreach ($imagenes as $key => $image) {
+        if ($i++ % 3 == 0)
+            echo '</div><div class="row">';
+?>
+        <div class="card col-sm-3 m-2">
+            <div class="car-body my-1">
+                <a class="btn btn-danger" href="#">Eliminar</a>
+            </div>
+            <img src="<?= $dir . $image ?>" class="card-img-top my-1" alt="<?= $image ?>" srcset="">
+        </div>
 
-if(file_exists($dir)){
-    $array = array_diff(scandir($dir),array('..', '.'));
-    foreach($array as $image){
-        showImageGray($dir . $image);
-        showImage($dir . $image);
+<?php
     }
 }
-
 ?>

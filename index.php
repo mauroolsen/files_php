@@ -1,8 +1,11 @@
 <?php
 require('header.php');
-require('imageList.php');
-require('uploadForm.php');
 ?>
+
+<div class="container">
+  <?php require('uploadForm.php'); ?>
+  <?php require('imageList.php'); ?>
+</div>
 
 </body>
 
