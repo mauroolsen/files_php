@@ -12,6 +12,8 @@
           class="form-control"
           placeholder="Nombre de usuario..."
           name="username"
+          id="username"
+          onkeyup="validarLogin()"
         />
       </div>
       <div class="form-group">
@@ -21,12 +23,16 @@
           class="form-control"
           placeholder="Contraseña"
           name="pass"
+          id="pass"
+          onkeyup="validarLogin()"
         />
       </div>
       <button
         class="btn btn-primary col-10 offset-1"
         type="submit"
         name="submit"
+        id="login"
+        disabled
       >
         Login
       </button>
@@ -38,22 +44,24 @@
       method="POST"
     >
       <div class="form-group">
-        <label for="username">Nombre de usuario</label>
+        <label for="username">Nombre de usuario <small>/* mayor a 7 caracteres */</small></label>
         <input
           type="text"
           class="form-control"
           placeholder="Nombre de usuario..."
+          id="nameSign"
+          onkeyup="validar()"
           name="username"
         />
       </div>
       <div class="form-group">
-        <label for="pass">Contraseña</label>
+        <label for="pass">Contraseña <small>/* mayor a 7 caracteres */</small></label>
         <input
           type="password"
           class="form-control"
           placeholder="Contraseña"
           id="pass1"
-          onkeyup="validarPass()"
+          onkeyup="validar()"
           name="pass"
         />
       </div>
@@ -64,7 +72,7 @@
           class="form-control"
           placeholder="Contraseña"
           id="pass2"
-          onkeyup="validarPass()"
+          onkeyup="validar()"
         />
       </div>
       <button
@@ -80,13 +88,4 @@
   </div>
 </div>
 
-<script>
-  function validarPass() {
-    let pass1 = document.getElementById("pass1").value;
-    let pass2 = document.getElementById("pass2").value;
-    let signin = document.getElementById("signin");
-    console.log(pass1, pass2);
-    if (pass1 == pass2) signin.disabled = false;
-    else signin.disabled = true;
-  }
-</script>
+<script src="./assets/js/login.js"></script>
