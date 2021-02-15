@@ -24,10 +24,10 @@ function isUsuario($user)
 {
   $users = getUsers();
   $names = array_column($users, 'username');
-  $response = '';
+  $response = [];
   $key = array_search($user['username'], $names);
-  if ($key) {
-    $response = $users[$key];
+  if ($key!==false) {
+    $response = ($users[$key]);
   }
   return $response;
 }
