@@ -1,9 +1,10 @@
 <?php
 require('../includes/files.php');
-if (isset($_POST['submit'])) {
+session_start();
+if (isset($_POST['submit']) && isset($_SESSION['user'])) {
     $message = false;
     if (isset($_FILES['file'])) {
-        $uploadPath = '../uploads/default/';
+        $uploadPath = '../uploads/default/'. $_SESSION['user']['username'] . '/';
         validarPath($uploadPath);
         $fileName = $_FILES['file']['tmp_name'];
         $targetfileName = basename($_FILES['file']['name']);

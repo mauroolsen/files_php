@@ -1,7 +1,7 @@
 <?php
 require('includes/images.php');
 
-$dir = 'uploads\\default\\';
+$dir = (isset($_SESSION['user'])) ? ('uploads/default/' . $_SESSION['user']['username'] . '/') : null;
 $imagenes = array();
 if (file_exists($dir)) {
     $imagenes = getImagenes($dir);
