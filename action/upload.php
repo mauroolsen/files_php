@@ -1,7 +1,7 @@
 <?php
 require('../includes/files.php');
 session_start();
-if (isset($_POST['submit']) && isset($_SESSION['user'])) {
+if (isset($_SESSION['user'])) {
   $message = false;
   if (isset($_FILES['file'])) {
     $uploadPath = '../uploads/default/' . $_SESSION['user']['username'] . '/';
