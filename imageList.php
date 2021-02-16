@@ -11,7 +11,7 @@ if (file_exists($dir)) {
     if ($i++ % 3 == 0)
       echo '</div><div class="row">';
 ?>
-    <div class="card col-sm-3 m-2">
+    <div class="card col-sm-3 m-2 p-2 tarjeta">
       <div class="car-body my-1">
         <form action="action/delete.php" method="POST">
           <input type="hidden" name="imagen" value="<?= $dir . $image; ?>">

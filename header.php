@@ -15,17 +15,30 @@
 
   <nav class="navbar navbar-expand-lg navbar-light justify-content-between" style="background-color: rgb(255 255 255);">
     <a class="navbar-brand" href="#">IMAGES.PHP</a>
-    <?php 
-    if(isset($_SESSION['user'])){
-      echo'
+    <?php
+    if (isset($_SESSION['user'])) {
+      echo '
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <a class="nav-link" href="action/logout.php">Log out</a>
             </li>
+            <li class="nav-item">
+              <a class="file-upload nav-link" onclick="desvio()">UPLOAD</a>
+            </li>
           </ul>
-        </div>';
+        </div>
+        <form class="form m-2" action="action/upload.php" method="POST" enctype="multipart/form-data">
+          <input type="file" name="file" id="file-input" onchange="submit()" class="visuallyhidden">
+        </form>
+        ';
     }
     ?>
 
   </nav>
+
+  <script>
+    function desvio() {
+      document.getElementById('file-input').click();
+    }
+  </script>

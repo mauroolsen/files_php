@@ -2,3 +2,23 @@ body{
   background-color: rgb(1 43 74);
   color: rgb(220, 239, 255);
 }
+.tarjeta{
+  background-color: #21547b;
+}
+.tarjeta:hover{
+  background-color: #2e6d9e;
+}
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.file-upload:hover{
+  color: black;
+  cursor: pointer;
+}
