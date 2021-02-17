@@ -7,7 +7,11 @@ require('includes/validations.php');
 <div class="container">
   <?php
   if (isset($_SESSION['user'])) {
-    require('home.php');
+    if(isset($_GET['image'])){
+      require('image.php');
+    }else{
+      require('home.php');
+    }
   } else {
     require('login.php');
   }

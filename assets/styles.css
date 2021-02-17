@@ -22,3 +22,7 @@ body{
   color: black;
   cursor: pointer;
 }
+.img-thumbnail{
+  border: none;
+  background-color: #474a4b;
+}
