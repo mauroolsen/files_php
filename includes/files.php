@@ -1,10 +1,11 @@
 <?php
 function subir($fileName, $filePath)
 {
+  $formats = ['png', 'jpeg', 'jpg'];
   $message = false;
   $pathInfo = pathinfo($filePath, PATHINFO_EXTENSION);
   if (
-    (($pathInfo == 'png') || ($pathInfo == 'jpeg'))
+    (in_array($pathInfo, $formats))
     &&
     (move_uploaded_file($fileName, $filePath))
   ) {
