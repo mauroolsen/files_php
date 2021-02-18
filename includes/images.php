@@ -15,6 +15,7 @@ function getImagenes($directorio)
   }
   return $response;
 }
+
 function isImage($image)
 {
   $ext = pathinfo($image, PATHINFO_EXTENSION);
@@ -51,11 +52,5 @@ function validarPath($path)
 {
   if (!file_exists($path))
     mkdir($path, 0777, true); // creo mas de una carpeta
-}
-
-function redireccion($message)
-{
-  $message = ($message) ? 'true' : 'false';
-  header('Location: ../index.php?message=' . strval($message));
 }
 

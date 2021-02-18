@@ -11,5 +11,6 @@ if (isset($_SESSION['user'])) {
     $filePath = $uploadPath . $targetfileName;
     if (validarArchivo($filePath)) $message = subir($fileName, $filePath);
   }
-  redireccion($message);
+  $message = ($message) ? 'true' : 'false';
+  header('Location: ../index.php?message=' . strval($message));
 }
