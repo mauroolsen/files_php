@@ -1,4 +1,6 @@
 <?php
+define('FORMATS', ['png', 'jpeg', 'jpg']);
+
 function getImagenes($directorio)
 {
   $response = '';
@@ -15,31 +17,45 @@ function getImagenes($directorio)
 }
 function isImage($image)
 {
-  $formats = ['png', 'jpeg', 'jpg'];
   $ext = pathinfo($image, PATHINFO_EXTENSION);
-  if (!(in_array($ext, $formats))) {
+  if (!(in_array($ext, FORMATS))) {
     $ext = false;
   }
   return $ext;
 }
-function showImageGray($image)
+
+function subir($fileName, $filePath)
 {
-  $ext = pathinfo($image, PATHINFO_EXTENSION);
-  $grayPath = 'uploads/gray/';
-  switch ($ext) {
-    case 'png':
-      $imageCreated = imagecreatefrompng($image);
-      break;
-    case 'jpeg':
-      $imageCreated = imagecreatefromjpeg($image);
-      break;
-    default:
-      return 0;
+  $message = false;
+  $pathInfo = pathinfo($filePath, PATHINFO_EXTENSION);
+  if (
+    (in_array($pathInfo, FORMATS))
+    &&
+    (move_uploaded_file($fileName, $filePath))
+  ) {
+    $message = true;
   }
-  imagefilter($imageCreated, IMG_FILTER_GRAYSCALE);
-  $functionDisplayImage = 'image' . 'png';
-  $grayPathImage = $grayPath . basename($image);
-  if (!file_exists($grayPath))
-    mkdir($grayPath);
-  $functionDisplayImage($imageCreated, $grayPathImage);
+  return $message;
 }
+
+function validarArchivo($filePath)
+{
+  $ret = true;
+  if (file_exists($filePath)) {
+    $ret = false;
+  }
+  return $ret;
+}
+
+function validarPath($path)
+{
+  if (!file_exists($path))
+    mkdir($path, 0777, true); // creo mas de una carpeta
+}
+
+function redireccion($message)
+{
+  $message = ($message) ? 'true' : 'false';
+  header('Location: ../index.php?message=' . strval($message));
+}
+

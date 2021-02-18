@@ -1,5 +1,5 @@
 <?php
-require('../includes/files.php');
+require('../includes/images.php');
 session_start();
 if (isset($_SESSION['user'])) {
   $message = false;
