@@ -1,20 +1,28 @@
 <?php
+
+require('./Controllers/ViewController.php');
+
+use Controllers\ViewController;
+
 session_start();
 require('config.php');
 require('header.php');
 require('includes/validations.php');
+
+$view = new ViewController();
 ?>
 
 <div class="container">
   <?php
+  
   if (isset($_SESSION['user'])) {
     if(isset($_GET['image'])){
-      require('image.php');
+      $view->showUploadView();
     }else{
-      require('home.php');
+      $view->showHomeView();
     }
   } else {
-    require('login.php');
+    $view->showLoginView();
   }
   ?>
 </div>
