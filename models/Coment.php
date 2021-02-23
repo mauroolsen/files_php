@@ -1,11 +1,16 @@
-<?php namespace Models\Coment;
-
-use Models\User as User;
+<?php namespace Models;
 
 class Coment{
   private $user;
   private $text;
   private $date;
+
+  function __construct($user, $text, $date)
+  {
+    $this->setUser($user);
+    $this->setText($text);
+    $this->setDate($date);
+  }
 
   /**
    * Get the value of user

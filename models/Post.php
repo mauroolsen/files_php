@@ -1,9 +1,4 @@
-<?php namespace Models\Post;
-
-use Models\Image as Image;
-use Models\Like as Like;
-use Models\Coment as Coment;
-
+<?php namespace Models;
 
 class Post{
   private $image;
@@ -12,6 +7,20 @@ class Post{
   private $likes;
   private $coments;
 
+  function __construct(
+    $image = '',
+    $text = '',
+    $date = '',
+    $likes = '',
+    $coments = ''
+  )
+  {
+    $this->setImage($image);
+    $this->setText($text);
+    $this->setDate($date);
+    $this->setLikes($likes);
+    $this->setComents($coments);
+  }
 
   /**
    * Get the value of image

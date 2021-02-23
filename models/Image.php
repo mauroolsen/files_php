@@ -1,7 +1,12 @@
-<?php namespace Models\Image;
+<?php namespace Models;
 
 class Image{
   private $path;
+
+  function __construct($path)
+  {
+    $this->setPath($path);
+  }
 
   public function getPath()
   {

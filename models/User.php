@@ -1,10 +1,16 @@
-<?php namespace Models\User;
+<?php namespace Models;
 
 abstract class User{
   private $name;
   private $email;
   private $passHashed;
   
+  function __construct($name = '', $email = '', $passHashed = '')
+  {
+    $this->setName($name);
+    $this->setEmail($email);
+    $this->setPassHashed($passHashed);
+  }
 
   /**
    * Get the value of name

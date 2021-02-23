@@ -1,9 +1,13 @@
-<?php namespace Models\Like;
+<?php namespace Models;
 
-use Models\User as User;
 
 class Like{
   private $user;
+
+  function __construct($user)
+  {
+    $this->setUser($user);
+  }
 
   /**
    * Get the value of user
