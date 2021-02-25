@@ -1,10 +1,26 @@
+<?php
+
+use Controllers\UserController;
+
+if(isset($_POST['login'])){
+  include('./Controllers/UserController.php');
+  $userController = new UserController();
+  $userController->login($_POST['username'], $_POST['pass']);
+}else if(isset($_POST['register'])){
+  include('./Controllers/UserController.php');
+  $userController = new UserController();
+  $userController->register($_POST['username'], $_POST['email'], $_POST['pass']);
+}
+?>
+
 <div class="container my-4">
   <div class="row mx-auto">
     <form
       class="form col-5 alert alert-success mx-auto"
-      action="./action/login.php"
+      action=""
       method="POST"
     >
+      <input type="hidden" value="true" name="login">
       <div class="form-group">
         <label for="username">Nombre de usuario</label>
         <input
@@ -40,9 +56,10 @@
 
     <form
       class="form col-5 alert alert-info mx-auto"
-      action="./action/signin.php"
+      action=""
       method="POST"
     >
+      <input type="hidden" value="true" name="register">
       <div class="form-group">
         <label for="username">Nombre de usuario <small>/* mayor a 7 caracteres */</small></label>
         <input
@@ -52,6 +69,16 @@
           id="nameSign"
           onkeyup="validar()"
           name="username"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Email..."
+          id="email"
+          name="email"
         />
       </div>
       <div class="form-group">
