@@ -26,7 +26,9 @@ class UserController
 
   public function login($name, $pass)
   {
-    if ($this->validateUser($name, $pass)) {
+    $user = $this->validateUser($name, $pass);
+    if ($user) {
+      $_SESSION['user'] = $user; 
     }
   }
 
@@ -43,23 +45,23 @@ class UserController
 
   private function validateUser($name, $pass)
   {
-    $response = false;
+    $response = null;
     $user = $this->getUserByName($name);
     if ($user && password_verify($pass, $user->passHashed)) {
-      $response = true;
+      $response = $user;
     }
     return $response;
   }
 
   private function getUserByName($name)
   {
-    $user = null;
+    $user = $this->dao->getByName($name);
     return $user;
   }
 
   private function getUserByEmail($email)
   {
-    $user = null;
+    $user = $this->dao->getByEmail($email);
     return $user;
   }
 }
