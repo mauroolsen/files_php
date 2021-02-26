@@ -6,7 +6,7 @@ class User{
   private $passHashed;
   private $disabled;
   
-  public function __construct($name = '', $email = '', $passHashed = '', $disabled = true)
+  public function __construct($name = '', $email = '', $passHashed = '', $disabled = false)
   {
     $this->name = $name;
     $this->email = $email;

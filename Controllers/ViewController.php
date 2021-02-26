@@ -1,16 +1,30 @@
-<?php namespace Controllers;
+<?php
 
-class ViewController{
+namespace Controllers;
 
-  function showLoginView(){
-    require_once('./login.php');
+class ViewController
+{
+
+  public function showLoginView()
+  {
+    header('Location: login.php');
   }
 
-  function showHomeView(){
-    require_once('./home.php');
+  public function showHomeView()
+  {
+    if (isset($_SESSION['user'])) {
+      header('Location: home.php');
+    } else {
+      $this->showLoginView();
+    }
   }
 
-  function showUploadView(){
-    require_once('./upload.php');
+  public function showUploadView()
+  {
+    if (isset($_SESSION['user'])) {
+      header('Location: upload.php');
+    } else {
+      $this->showLoginView();
+    }
   }
 }

@@ -1,13 +1,15 @@
 <?php
 
+require_once('./includes.php');
+
 use Controllers\UserController;
 
 if(isset($_POST['login'])){
-  include('./Controllers/UserController.php');
+  include_once('Controllers/UserController.php');
   $userController = new UserController();
   $userController->login($_POST['username'], $_POST['pass']);
 }else if(isset($_POST['register'])){
-  include('./Controllers/UserController.php');
+  include_once('Controllers/UserController.php');
   $userController = new UserController();
   $userController->register($_POST['username'], $_POST['email'], $_POST['pass']);
 }

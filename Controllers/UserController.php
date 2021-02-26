@@ -2,8 +2,13 @@
 
 namespace Controllers;
 
+include_once('./Controllers/ViewController.php');
 include_once('./Models/User.php');
 include_once('./DAO/UserDAO.php');
+
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
 
 use Models\User as User;
 use DAO\UserDAO as UserDAO;
@@ -12,10 +17,12 @@ class UserController
 {
 
   private $dao;
+  private $viewController;
 
   public function __construct()
   {
     $this->dao = new UserDAO();
+    $this->viewController = new ViewController();
   }
 
   public function register($name, $email, $pass)
@@ -28,8 +35,19 @@ class UserController
   {
     $user = $this->validateUser($name, $pass);
     if ($user) {
-      $_SESSION['user'] = $user; 
+      $_SESSION['user'] = $this->toArray($user);
+      $this->viewController->showHomeView();
+    } else {
+      $this->viewController->showLoginView();
     }
+  }
+
+  public function logout()
+  {
+    if (isset($_SESSION['user'])) {
+      session_destroy();
+    }
+    $this->viewController->showHomeView();
   }
 
   public function getUsers()
@@ -63,5 +81,17 @@ class UserController
   {
     $user = $this->dao->getByEmail($email);
     return $user;
+  }
+
+  private function toArray($user)
+  {
+    $value['name'] = $user->name;
+    $value['email'] = $user->email;
+    $value['disabled'] = $user->disabled;
+    return $value;
+  }
+
+  private function toUser($user)
+  {
   }
 }

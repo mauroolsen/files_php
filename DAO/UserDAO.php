@@ -102,7 +102,7 @@ class UserDAO
       $user['name'] = $value->name;
       $user['email'] = $value->email;
       $user['passHashed'] = $value->passHashed;
-      $user['disabled'] = true;
+      $user['disabled'] = false;
       array_push($arrayUsers, $user);
     }
     $jsonUsers = json_encode($arrayUsers, JSON_PRETTY_PRINT);
