@@ -2,13 +2,7 @@
     {
         "name": "mauro123olsen@gmail.com",
         "email": "mauro123olsen@gmail.com",
-        "passHashed": "$2y$10$KR39aqcnWPllj6JpbZQ7aOJlfBSo70n4FABLefbm1i8zvthTcDRK2",
-        "disabled": true
-    },
-    {
-        "name": "mauroolsen",
-        "email": "mauroolsencapitoli@hotmail.com",
-        "passHashed": "$2y$10$Vkw19uYqF9nolBBAQxf\/fum2JPalhW.agK5OC5QNDqWw1QFkss\/ga",
-        "disabled": true
+        "passHashed": "$2y$10$ftBppTp6mMQzg0rTjLd01uRnp5Jh97MYyjGJcw1xiSd3egj\/52hUy",
+        "disabled": false
     }
 ]
