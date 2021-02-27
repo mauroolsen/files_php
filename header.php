@@ -28,7 +28,7 @@
             </li>
           </ul>
         </div>
-        <form class="form m-2" action="action/upload.php" method="POST" enctype="multipart/form-data">
+        <form class="form m-2" action="action.php?upload" method="POST" enctype="multipart/form-data">
           <input type="file" name="file" id="file-input" onchange="submit()" class="visuallyhidden">
         </form>
         ';
