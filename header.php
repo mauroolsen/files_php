@@ -24,7 +24,7 @@
               <a class="nav-link" href="action.php?logout">Log out</a>
             </li>
             <li class="nav-item">
-              <a class="file-upload nav-link" onclick="desvio()">UPLOAD</a>
+              <a class="nav-link" href="action.php?upload">UPLOAD</a>
             </li>
           </ul>
         </div>
@@ -36,6 +36,10 @@
     ?>
 
   </nav>
+
+<!--   <li class="nav-item">
+    <a class="file-upload nav-link" onclick="desvio()">UPLOAD</a>
+  </li> -->
 
   <script>
     function desvio() {
