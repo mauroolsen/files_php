@@ -8,8 +8,8 @@ include_once('./Models/Post.php');
 include_once('./DAO/PostDAO.php');
 
 use Interfaces\Transform as Transform;
-use Models\User as User;
-use DAO\UserDAO as UserDAO;
+use Models\Post as Post;
+use DAO\PostDAO as PostDAO;
 
 class PostController
 {
@@ -20,5 +20,15 @@ class PostController
   {
     $this->dao = new PostDAO();
     $this->viewController = new ViewController();
+  }
+
+  public function newPost($username, $img, $text){
+    $post = new Post($username, $img, $text);
+    $this->addPost($post);
+    $this->viewController->showHomeView();
+  }
+
+  private function addPost($post){
+    $this->dao->add($post);
   }
 }

@@ -3,12 +3,14 @@
 namespace DAO;
 
 use Models\User as User;
+use Interfaces\DAO as DAO;
 
 include_once('Models/User.php');
+include_once('interfaces/DAO.php');
 
 define('USERS_PATH', 'data/users.json');
 
-class UserDAO
+class UserDAO implements DAO
 {
   public function getAll()
   {

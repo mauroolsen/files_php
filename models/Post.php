@@ -1,25 +1,34 @@
 <?php namespace Models;
 
 class Post{
+  private $user;
   private $image;
   private $text;
   private $date;
   private $likes;
   private $coments;
+  private $disabled;
+  private $id;
 
   function __construct(
+    $user = '',
     $image = '',
     $text = '',
-    $date = '',
-    $likes = '',
-    $coments = ''
+    $likes = 0,
+    $date = null,
+    $coments = [],
+    $id = 0,
+    $disabled = false
   )
   {
+    $this->user = $user;
     $this->image = $image;
     $this->text = $text;
-    $this->date = $date;
+    $this->date = ($date) ? $date : date('d-m-Y');
     $this->likes = $likes;
     $this->coments = $coments;
+    $this->id = $id;
+    $this->disabled = $disabled;
   }
 
   public function __get($property)

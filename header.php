@@ -24,22 +24,15 @@
               <a class="nav-link" href="action.php?logout">Log out</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="action.php?upload">UPLOAD</a>
+              <a class="file-upload nav-link" href="action.php?upload">UPLOAD</a>
             </li>
           </ul>
         </div>
-        <form class="form m-2" action="action.php?upload" method="POST" enctype="multipart/form-data">
-          <input type="file" name="file" id="file-input" onchange="submit()" class="visuallyhidden">
-        </form>
         ';
     }
     ?>
 
   </nav>
-
-<!--   <li class="nav-item">
-    <a class="file-upload nav-link" onclick="desvio()">UPLOAD</a>
-  </li> -->
 
   <script>
     function desvio() {
