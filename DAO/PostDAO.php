@@ -35,9 +35,25 @@ class PostDAO implements DAO
 
   public function add($post)
   {
+    $lastId = 0;
     $posts = $this->retrieve();
+
     if(false !== (end($posts))) 
-      $post->id = end($posts)->id + 1;
+      $lastId = end($posts)->id + 1;
+
+    $uploadPath = './uploads/default/' . $post->user . '/' . $lastId . '/';
+    if (!file_exists($uploadPath))
+      mkdir($uploadPath, 0777, true); // creo mas de una carpeta
+
+    $fileName = $post->image['tmp_name'];
+    $targetfileName = basename($post->image['name']);
+    $filePath = $uploadPath . $targetfileName;
+
+    move_uploaded_file($fileName, $filePath);
+
+    $post->image = $filePath;
+
+    $post->id = $lastId;
     array_push($posts, $post);
     $this->save($posts);
   }
