@@ -21,6 +21,13 @@
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
+              <a 
+              class="nav-link text-uppercase" 
+              href="home.php?profile=' . $_SESSION['user']['name'].'">
+                ' . $_SESSION['user']['name'].'
+              </a>
+            </li>        
+            <li class="nav-item">
               <a class="nav-link" href="action.php?logout">Log out</a>
             </li>
             <li class="nav-item">

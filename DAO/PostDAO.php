@@ -15,9 +15,9 @@ class PostDAO implements DAO
   public function getAll()
   {
     $posts = $this->retrieve();
-    foreach ($posts as $post) {
+    foreach ($posts as $key => $post) {
       if ($post->disabled) {
-        unset($post);
+        unset($posts[$key]);
       }
     }
     return $posts;
@@ -26,11 +26,22 @@ class PostDAO implements DAO
   public function getByUser($username)
   {
     $posts = $this->getAll();
-    foreach($posts as $post){
+    foreach($posts as $key => $post){
       if($username != $post->user)
-        unset($post);
+        unset($posts[$key]);
     }
     return $posts;
+  }
+
+  public function getById($id)
+  {
+    $res = null;
+    $posts = $this->getAll();
+    foreach($posts as $post){
+      if($id == $post->id)
+        $res = $post;
+    }
+    return $res;
   }
 
   public function add($post)

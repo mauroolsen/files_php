@@ -27,4 +27,12 @@ class ViewController
       $this->showLoginView();
     }
   }
+
+  public function showPostView($post){
+    if (isset($_SESSION['user'])) {
+      header('Location: home.php?post=' . $post);
+    } else {
+      $this->showLoginView();
+    }
+  }
 }

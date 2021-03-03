@@ -21,4 +21,7 @@ if(isset($_SESSION['user'])){
   if(isset($_GET['upload'])){
     $viewController->showUploadView();
   }
+  if(isset($_GET['post'])){
+    $viewController->showPostView($_GET['post']);
+  }
 }

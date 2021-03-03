@@ -1,5 +1,7 @@
 <?php namespace Models;
 
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+
 class Post{
   private $user;
   private $image;
@@ -24,7 +26,7 @@ class Post{
     $this->user = $user;
     $this->image = $image;
     $this->text = $text;
-    $this->date = ($date) ? $date : date('d-m-Y');
+    $this->date = ($date) ? $date : date('l jS \of F Y h:i A');;
     $this->likes = $likes;
     $this->coments = $coments;
     $this->id = $id;

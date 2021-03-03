@@ -15,9 +15,9 @@ class UserDAO implements DAO
   public function getAll()
   {
     $users = $this->retrieve();
-    foreach ($users as $user) {
+    foreach ($users as $key => $user) {
       if ($user->disabled) {
-        unset($user);
+        unset($users[$key]);
       }
     }
     return $users;

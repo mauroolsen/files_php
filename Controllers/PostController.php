@@ -28,6 +28,18 @@ class PostController
     $this->viewController->showHomeView();
   }
 
+  public function getAll(){
+    return $this->dao->getAll();
+  }
+
+  public function getByUser($username){
+    return $this->dao->getByUser($username);
+  }
+
+  public function getById($id){
+    return $this->dao->getById($id);
+  }
+
   private function addPost($post){
     $this->dao->add($post);
   }
