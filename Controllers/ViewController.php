@@ -19,13 +19,23 @@ class ViewController
     }
   }
 
-  public function showUploadView()
+  public function showUploadView($id = null)
   {
     if (isset($_SESSION['user'])) {
       header('Location: upload.php');
     } else {
       $this->showLoginView();
     }
+  }
+
+  public function showEditView($id){
+    if (isset($_SESSION['user'])) {
+      header('Location: edit.php?post=' . $id);
+    } else {
+      $this->showLoginView();
+    }
+    /* if($id)
+    $header .= "?edit=$id"; */
   }
 
   public function showPostView($post){

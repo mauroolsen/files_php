@@ -24,4 +24,7 @@ if(isset($_SESSION['user'])){
   if(isset($_GET['delete'])){
     $postController->delete($_GET['delete']);
   }
+  if(isset($_GET['edit'])){
+    $viewController->showEditView($_GET['edit']);
+  }
 }

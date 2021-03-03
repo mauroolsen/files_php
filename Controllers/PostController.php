@@ -50,6 +50,11 @@ class PostController
     $this->viewController->showHomeView();
   }
 
+  public function edit($post){
+    $this->dao->edit($post);
+    $this->viewController->showHomeView();
+  }
+
   private function addPost($post){
     $this->dao->add($post);
   }

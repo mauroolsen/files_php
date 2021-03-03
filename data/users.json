@@ -10,5 +10,11 @@
         "email": "martincuchuflito@gmail.com",
         "passHashed": "$2y$10$B2iC5vjozyZmNy2BvUNnOORJmSa\/3lPdsOrtCd8OmAXbNgA9lZgMe",
         "disabled": false
+    },
+    {
+        "name": "luna fari\u00f1a",
+        "email": "lunita@gmail.com",
+        "passHashed": "$2y$10$cKsYDsezmDKV8g03MNeDTutITkBGDecDhc9Rz\/FLO2j8IXeno29e6",
+        "disabled": false
     }
 ]

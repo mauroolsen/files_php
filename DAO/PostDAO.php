@@ -80,6 +80,16 @@ class PostDAO implements DAO
     $this->save($posts);
   }
 
+  public function edit($value){
+    $posts = $this->getAll();
+    foreach($posts as $key => $post){
+      if($post->id == $value->id){
+        $posts[$key] = $value;
+      }
+    }
+    $this->save($posts);
+  }
+
   private function retrieve()
   {
     $data = [];
