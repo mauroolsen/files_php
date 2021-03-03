@@ -21,6 +21,17 @@ if (isset($_GET['post'])) {
       <div class="col-6">
         <small><?= $post->date ?></small>
         <p><?= $post->text ?></p>
+
+        <?php
+        if($_SESSION['user']['name'] == $post->user){
+          echo '
+            <a class="btn btn-danger" href="action.php?delete='. $post->id .'">ELIMINAR</a>
+            <a class="btn btn-info" href="action.php?edit='. $post->id .'">EDITAR</a>
+          ';
+        }
+         ?> 
+
+
       </div>
     </div>
   </div>

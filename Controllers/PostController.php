@@ -40,6 +40,16 @@ class PostController
     return $this->dao->getById($id);
   }
 
+  public function delete($id){
+    $post = $this->getById($id);
+    if($post){
+      if($post->user == $_SESSION['user']['name']){
+        $this->dao->delete($id);
+      } 
+    }
+    $this->viewController->showHomeView();
+  }
+
   private function addPost($post){
     $this->dao->add($post);
   }
