@@ -23,8 +23,8 @@
             <li class="nav-item">
               <a 
               class="nav-link text-uppercase" 
-              href="home.php?profile=' . $_SESSION['user']['name'].'">
-                ' . $_SESSION['user']['name'].'
+              href="home.php?profile=' . $_SESSION['user']['name'] . '">
+                ' . $_SESSION['user']['name'] . '
               </a>
             </li>        
             <li class="nav-item">

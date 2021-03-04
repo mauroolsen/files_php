@@ -16,5 +16,11 @@
         "email": "lunita@gmail.com",
         "passHashed": "$2y$10$cKsYDsezmDKV8g03MNeDTutITkBGDecDhc9Rz\/FLO2j8IXeno29e6",
         "disabled": false
+    },
+    {
+        "name": "jorge carlos",
+        "email": "jorgecarlos@gmail.com",
+        "passHashed": "$2y$10$yJ95Q8IW2yXWv0pXcXAtseL5ZsX9sxEDtAVFIarJmcSJDH7YQnxku",
+        "disabled": false
     }
 ]

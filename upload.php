@@ -3,11 +3,11 @@
 use Controllers\PostController;
 
 session_start();
-include_once('./includes.php');
-if(!isset($_SESSION['user'])){
+include_once('./header.php');
+if (!isset($_SESSION['user'])) {
   header('Location: login.php');
-}else{
-  if(isset($_POST['submit'])){
+} else {
+  if (isset($_POST['submit'])) {
     include_once('./Controllers/PostController.php');
     $postController = new PostController();
     $postController->newPost(($_SESSION['user']['name']), $_FILES['image-post'], $_POST['text']);
@@ -17,32 +17,15 @@ if(!isset($_SESSION['user'])){
 
 <div class="container my-4">
   <div class="row mx-auto">
-    <form
-      class="form col-5 alert alert-success mx-auto"
-      action=""
-      method="POST"
-      enctype="multipart/form-data"
-    >
+    <form class="form col-5 alert alert-success mx-auto" action="" method="POST" enctype="multipart/form-data">
       <div class="form-group">
         <input type="file" name="image-post" id="file-input">
       </div>
       <div class="form-group">
         <label for="text">Texto</label>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Texto..."
-          name="text"
-          id="text"
-          onkeyup=""
-        />
+        <input type="text" class="form-control" placeholder="Texto..." name="text" id="text" onkeyup="" />
       </div>
-      <button
-        class="btn btn-primary col-10 offset-1"
-        type="submit"
-        name="submit"
-        id="Upload"
-      >
+      <button class="btn btn-primary col-10 offset-1" type="submit" name="submit" id="Upload">
         Upload
       </button>
     </form>
