@@ -4,7 +4,7 @@ if (!isset($_SESSION['user']))
 
 use Controllers\PostController;
 
-include_once('./Controllers/PostController.php');
+include_once('../Controllers/PostController.php');
 $postController = new PostController;
 
 if (isset($_GET['post'])) {

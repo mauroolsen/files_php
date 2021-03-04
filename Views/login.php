@@ -5,11 +5,11 @@ require_once('./header.php');
 use Controllers\UserController;
 
 if (isset($_POST['login'])) {
-  include_once('Controllers/UserController.php');
+  include_once('../Controllers/UserController.php');
   $userController = new UserController();
   $userController->login($_POST['username'], $_POST['pass']);
 } else if (isset($_POST['register'])) {
-  include_once('Controllers/UserController.php');
+  include_once('../Controllers/UserController.php');
   $userController = new UserController();
   $userController->register($_POST['username'], $_POST['email'], $_POST['pass']);
 }
@@ -57,4 +57,4 @@ if (isset($_POST['login'])) {
   </div>
 </div>
 
-<script src="./assets/js/login.js"></script>
+<script src="../assets/js/login.js"></script>

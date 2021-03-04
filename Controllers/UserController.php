@@ -2,9 +2,9 @@
 
 namespace Controllers;
 
-include_once('./Controllers/ViewController.php');
-include_once('./Models/User.php');
-include_once('./DAO/UserDAO.php');
+include_once('../Controllers/ViewController.php');
+include_once('../Models/User.php');
+include_once('../DAO/UserDAO.php');
 
 if (session_status() === PHP_SESSION_NONE) {
   session_start();

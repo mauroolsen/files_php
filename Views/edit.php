@@ -8,7 +8,7 @@ include_once('./header.php');
 if (!isset($_SESSION['user'])) {
   header('Location: login.php');
 } else {
-  include_once('./Controllers/PostController.php');
+  include_once('../Controllers/PostController.php');
   $postController = new PostController();
   if (isset($_GET['post'])) {
     $post = $postController->getById($_GET['post']);

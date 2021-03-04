@@ -7,5 +7,5 @@ if (isset($_SESSION['user'])) {
   else
     require('postlist.php');
 } else {
-  header('Location: index.php');
+  header('Location: ../index.php');
 }

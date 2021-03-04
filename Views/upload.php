@@ -8,7 +8,7 @@ if (!isset($_SESSION['user'])) {
   header('Location: login.php');
 } else {
   if (isset($_POST['submit'])) {
-    include_once('./Controllers/PostController.php');
+    include_once('../Controllers/PostController.php');
     $postController = new PostController();
     $postController->newPost(($_SESSION['user']['name']), $_FILES['image-post'], $_POST['text']);
   }

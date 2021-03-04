@@ -6,11 +6,11 @@ use Models\User as User;
 use Interfaces\DAO as DAO;
 use Interfaces\Transform as Transform;
 
-include_once('Models/User.php');
+include_once('../Models/User.php');
 include_once('interfaces/DAO.php');
 include_once('interfaces/Transform.php');
 
-define('USERS_PATH', 'data/users.json');
+define('USERS_PATH', '../data/users.json');
 
 class UserDAO implements DAO, Transform
 {

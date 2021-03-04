@@ -4,9 +4,9 @@ use Controllers\UserController as UserController;
 use Controllers\PostController as PostController;
 use Controllers\ViewController as ViewController;
 
-include_once('./Controllers/UserController.php');
-include_once('./Controllers/PostController.php');
-include_once('./Controllers/ViewController.php');
+include_once('../Controllers/UserController.php');
+include_once('../Controllers/PostController.php');
+include_once('../Controllers/ViewController.php');
 
 $userController = new UserController();
 $postController = new PostController();

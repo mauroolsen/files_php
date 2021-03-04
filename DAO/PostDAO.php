@@ -5,10 +5,10 @@ namespace DAO;
 use Models\Post as Post;
 use Interfaces\DAO as DAO;
 
-include_once('./Models/Post.php');
+include_once('../Models/Post.php');
 include_once('interfaces/DAO.php');
 
-define('POST_PATH', './data/posts.json');
+define('POST_PATH', '../data/posts.json');
 
 class PostDAO implements DAO
 {
@@ -52,7 +52,7 @@ class PostDAO implements DAO
     if(false !== (end($posts))) 
       $lastId = end($posts)->id + 1;
 
-    $uploadPath = './uploads/default/' . $post->user . '/' . $lastId . '/';
+    $uploadPath = '../uploads/default/' . $post->user . '/' . $lastId . '/';
     if (!file_exists($uploadPath))
       mkdir($uploadPath, 0777, true); // creo mas de una carpeta
 
