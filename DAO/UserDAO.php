@@ -4,13 +4,15 @@ namespace DAO;
 
 use Models\User as User;
 use Interfaces\DAO as DAO;
+use Interfaces\Transform as Transform;
 
 include_once('Models/User.php');
 include_once('interfaces/DAO.php');
+include_once('interfaces/Transform.php');
 
 define('USERS_PATH', 'data/users.json');
 
-class UserDAO implements DAO
+class UserDAO implements DAO, Transform
 {
   public function getAll()
   {
@@ -50,8 +52,8 @@ class UserDAO implements DAO
   {
     $users = $this->getAll();
     $user = null;
-    foreach($users as $value){
-      if($name == $value->name){
+    foreach ($users as $value) {
+      if ($name == $value->name) {
         $user = $value;
       }
     }
@@ -61,16 +63,17 @@ class UserDAO implements DAO
   {
     $users = $this->getAll();
     $user = null;
-    foreach($users as $value){
-      if($email == $value->email){
+    foreach ($users as $value) {
+      if ($email == $value->email) {
         $user = $value;
       }
     }
     return $user;
   }
 
-  private function validateUser($param1, $param2){
-    if($param1->name == $param2->name && $param1->email == $param2->email)
+  private function validateUser($param1, $param2)
+  {
+    if ($param1->name == $param2->name && $param1->email == $param2->email)
       return true;
   }
   private function retrieve()
@@ -83,12 +86,7 @@ class UserDAO implements DAO
       foreach ($data as $value) {
         array_push(
           $users,
-          new User(
-            $value['name'],
-            $value['email'],
-            $value['passHashed'],
-            $value['disabled']
-          )
+          $this->toObjet($value)
         );
       }
     }
@@ -101,13 +99,29 @@ class UserDAO implements DAO
     if (!file_exists('data'))
       mkdir('data');
     foreach ($data as $value) {
-      $user['name'] = $value->name;
-      $user['email'] = $value->email;
-      $user['passHashed'] = $value->passHashed;
-      $user['disabled'] = false;
+      $user = $this->toArray($value);
       array_push($arrayUsers, $user);
     }
     $jsonUsers = json_encode($arrayUsers, JSON_PRETTY_PRINT);
     file_put_contents(USERS_PATH, $jsonUsers);
+  }
+
+  public function toArray($objet)
+  {
+    $value['name'] = $objet->name;
+    $value['email'] = $objet->email;
+    $value['passHashed'] = $objet->passHashed;
+    $value['disabled'] = $objet->disabled;
+    return $value;
+  }
+
+  public function toObjet($value)
+  {
+    return new User(
+      $value['name'],
+      $value['email'],
+      $value['passHashed'],
+      $value['disabled']
+    );
   }
 }

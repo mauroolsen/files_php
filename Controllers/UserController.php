@@ -2,7 +2,6 @@
 
 namespace Controllers;
 
-include_once('./Controllers/interfaces/Transform.php');
 include_once('./Controllers/ViewController.php');
 include_once('./Models/User.php');
 include_once('./DAO/UserDAO.php');
@@ -11,11 +10,10 @@ if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
-use Interfaces\Transform as Transform;
 use Models\User as User;
 use DAO\UserDAO as UserDAO;
 
-class UserController implements Transform
+class UserController
 {
 
   private $dao;
@@ -37,7 +35,7 @@ class UserController implements Transform
   {
     $user = $this->validateUser($name, $pass);
     if ($user) {
-      $_SESSION['user'] = $this->toArray($user);
+      $_SESSION['user'] = $this->dao->toArray($user);
       $this->viewController->showHomeView();
     } else {
       $this->viewController->showLoginView();
@@ -85,15 +83,4 @@ class UserController implements Transform
     return $user;
   }
 
-  public function toArray($objet)
-  {
-    $value['name'] = $objet->name;
-    $value['email'] = $objet->email;
-    $value['disabled'] = $objet->disabled;
-    return $value;
-  }
-
-  public function toObjet($array)
-  {
-  }
 }
