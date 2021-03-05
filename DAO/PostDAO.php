@@ -4,13 +4,15 @@ namespace DAO;
 
 use Models\Post as Post;
 use Interfaces\DAO as DAO;
+use Interfaces\Transform as Transform;
 
 include_once('../Models/Post.php');
 include_once('interfaces/DAO.php');
+include_once('interfaces/Transform.php');
 
 define('POST_PATH', '../data/posts.json');
 
-class PostDAO implements DAO
+class PostDAO implements DAO, Transform
 {
   public function getAll()
   {
@@ -26,8 +28,8 @@ class PostDAO implements DAO
   public function getByUser($username)
   {
     $posts = $this->getAll();
-    foreach($posts as $key => $post){
-      if($username != $post->user)
+    foreach ($posts as $key => $post) {
+      if ($username != $post->user)
         unset($posts[$key]);
     }
     return $posts;
@@ -37,8 +39,8 @@ class PostDAO implements DAO
   {
     $res = null;
     $posts = $this->getAll();
-    foreach($posts as $post){
-      if($id == $post->id)
+    foreach ($posts as $post) {
+      if ($id == $post->id)
         $res = $post;
     }
     return $res;
@@ -49,7 +51,7 @@ class PostDAO implements DAO
     $lastId = 0;
     $posts = $this->retrieve();
 
-    if(false !== (end($posts))) 
+    if (false !== (end($posts)))
       $lastId = end($posts)->id + 1;
 
     $uploadPath = '../uploads/default/' . $post->user . '/' . $lastId . '/';
@@ -72,18 +74,19 @@ class PostDAO implements DAO
   public function delete($postId)
   {
     $posts = $this->retrieve();
-    foreach($posts as $post){
-      if($post->id == $postId){
+    foreach ($posts as $post) {
+      if ($post->id == $postId) {
         $post->disabled = true;
       }
     }
     $this->save($posts);
   }
 
-  public function edit($value){
+  public function edit($value)
+  {
     $posts = $this->getAll();
-    foreach($posts as $key => $post){
-      if($post->id == $value->id){
+    foreach ($posts as $key => $post) {
+      if ($post->id == $value->id) {
         $posts[$key] = $value;
       }
     }
@@ -100,22 +103,13 @@ class PostDAO implements DAO
       foreach ($data as $value) {
         array_push(
           $posts,
-          new Post(
-            $value['user'],
-            $value['image'],
-            $value['text'],
-            $value['likes'],
-            $value['date'],
-            $value['coments'],
-            $value['id'],
-            $value['disabled']
-          )
+          $this->toObject($value)
         );
       }
     }
     return $posts;
   }
-  
+
   private function save($data)
   {
     $arrayPosts = [];
@@ -123,17 +117,36 @@ class PostDAO implements DAO
     if (!file_exists('data'))
       mkdir('data');
     foreach ($data as $value) {
-      $post['user'] = $value->user;
-      $post['image'] = $value->image;
-      $post['text'] = $value->text;
-      $post['likes'] = $value->likes;
-      $post['date'] = $value->date;
-      $post['coments'] = $value->coments;
-      $post['id'] = $value->id;
-      $post['disabled'] = $value->disabled;
-      array_push($arrayPosts, $post);
+      array_push($arrayPosts, $this->toArray($value));
     }
     $jsonPosts = json_encode($arrayPosts, JSON_PRETTY_PRINT);
     file_put_contents(POST_PATH, $jsonPosts);
+  }
+
+  public function toArray($object)
+  {
+    $post['user'] = $object->user;
+    $post['image'] = $object->image;
+    $post['text'] = $object->text;
+    $post['likes'] = $object->likes;
+    $post['date'] = $object->date;
+    $post['coments'] = $object->coments;
+    $post['id'] = $object->id;
+    $post['disabled'] = $object->disabled;
+    return $post;
+  }
+
+  public function toObject($value)
+  {
+    return new Post(
+      $value['user'],
+      $value['image'],
+      $value['text'],
+      $value['likes'],
+      $value['date'],
+      $value['coments'],
+      $value['id'],
+      $value['disabled']
+    );
   }
 }

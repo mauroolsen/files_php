@@ -86,7 +86,7 @@ class UserDAO implements DAO, Transform
       foreach ($data as $value) {
         array_push(
           $users,
-          $this->toObjet($value)
+          $this->toObject($value)
         );
       }
     }
@@ -106,16 +106,16 @@ class UserDAO implements DAO, Transform
     file_put_contents(USERS_PATH, $jsonUsers);
   }
 
-  public function toArray($objet)
+  public function toArray($object)
   {
-    $value['name'] = $objet->name;
-    $value['email'] = $objet->email;
-    $value['passHashed'] = $objet->passHashed;
-    $value['disabled'] = $objet->disabled;
+    $value['name'] = $object->name;
+    $value['email'] = $object->email;
+    $value['passHashed'] = $object->passHashed;
+    $value['disabled'] = $object->disabled;
     return $value;
   }
 
-  public function toObjet($value)
+  public function toObject($value)
   {
     return new User(
       $value['name'],
