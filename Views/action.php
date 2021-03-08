@@ -28,4 +28,7 @@ if (isset($_SESSION['user'])) {
   if (isset($_GET['edit'])) {
     $viewController->showEditView($_GET['edit']);
   }
+  if(isset($_POST['comment'])){
+    $postController->comment($_POST['comment'], $_POST['post-id'], $_SESSION['user']['name']);
+  }
 }

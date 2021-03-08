@@ -5,7 +5,9 @@ namespace Controllers;
 include_once('../Controllers/ViewController.php');
 include_once('../Models/Post.php');
 include_once('../DAO/PostDAO.php');
+include_once('../Models/Comment.php');
 
+use Models\Comment as Comment;
 use Models\Post as Post;
 use DAO\PostDAO as PostDAO;
 
@@ -51,6 +53,18 @@ class PostController
   public function edit($post){
     $this->dao->edit($post);
     $this->viewController->showHomeView();
+  }
+
+  public function comment($text, $post_id, $username){
+    $comment = new Comment($username, $text, date('l jS \of F Y h:i A'));
+    $post = $this->getById($post_id);
+
+    // modificar __set()
+    $comments = $post->comments; 
+    array_push($comments, $comment);
+    $post->comments = $comments;
+
+    $this->edit($post);
   }
 
   private function addPost($post){

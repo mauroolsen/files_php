@@ -1,6 +1,6 @@
 <?php namespace Models;
 
-class Coment{
+class Comment{
   private $user;
   private $text;
   private $date;
@@ -22,5 +22,14 @@ class Coment{
     if(property_exists($this, $property)){
       $this->$property = $value;
     }
+  }
+
+  public function toArray(){
+    $comment = [
+      'text' => $this->text,
+      'user' => $this->user,
+      'date' => $this->date,
+    ];
+    return $comment;
   }
 }

@@ -4,15 +4,13 @@ namespace DAO;
 
 use Models\User as User;
 use Interfaces\DAO as DAO;
-use Interfaces\Transform as Transform;
 
 include_once('../Models/User.php');
 include_once('interfaces/DAO.php');
-include_once('interfaces/Transform.php');
 
 define('USERS_PATH', '../data/users.json');
 
-class UserDAO implements DAO, Transform
+class UserDAO implements DAO
 {
   public function getAll()
   {

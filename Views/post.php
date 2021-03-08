@@ -30,7 +30,30 @@ if (isset($_GET['post'])) {
           ';
           }
           ?>
+          <div>like</div>
 
+          <ul class="list-group my-1">
+            <?php
+            foreach ($post->comments as $comment) {
+            ?>
+              <li class="list-group-item my-1">
+                <small><?= $comment->date?></small><br>
+                <p style="padding-left:20px;"><?= $comment->user . ': ' . $comment->text ?></p>
+              </li>
+            <?php
+            }
+            ?>
+          </ul>
+
+          <form class="form" action="action.php" method="post">
+            <input type="hidden" value="<?= $post->id ?>" name="post-id">
+            <div class="input-group">
+              <input type="text" class="form-control" name="comment" placeholder="Comentario...">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Comentar</button>
+              </div>
+            </div>
+          </form>
 
         </div>
       </div>

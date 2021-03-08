@@ -8,7 +8,7 @@ class Post{
   private $text;
   private $date;
   private $likes;
-  private $coments;
+  private $comments;
   private $disabled;
   private $id;
 
@@ -18,7 +18,7 @@ class Post{
     $text = '',
     $likes = 0,
     $date = null,
-    $coments = [],
+    $comments = [],
     $id = 0,
     $disabled = false
   )
@@ -28,7 +28,7 @@ class Post{
     $this->text = $text;
     $this->date = ($date) ? $date : date('l jS \of F Y h:i A');;
     $this->likes = $likes;
-    $this->coments = $coments;
+    $this->comments = $comments;
     $this->id = $id;
     $this->disabled = $disabled;
   }
@@ -44,5 +44,26 @@ class Post{
     if(property_exists($this, $property)){
       $this->$property = $value;
     }
+  }
+
+  public function toArray(){
+
+    $arrayComments = [];
+    if($this->comments){
+      foreach($this->comments as $comment){
+        array_push($arrayComments, $comment->toArray());
+      }
+    }
+
+    $post['user'] = $this->user;
+    $post['image'] = $this->image;
+    $post['text'] = $this->text;
+    $post['likes'] = $this->likes;
+    $post['date'] = $this->date;
+    $post['comments'] = $arrayComments;
+    $post['id'] = $this->id;
+    $post['disabled'] = $this->disabled;
+
+    return $post;
   }
 }

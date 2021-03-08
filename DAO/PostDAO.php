@@ -4,15 +4,15 @@ namespace DAO;
 
 use Models\Post as Post;
 use Interfaces\DAO as DAO;
-use Interfaces\Transform as Transform;
+use Models\Comment as Comment;
 
 include_once('../Models/Post.php');
 include_once('interfaces/DAO.php');
-include_once('interfaces/Transform.php');
+include_once('../Models/Comment.php');
 
 define('POST_PATH', '../data/posts.json');
 
-class PostDAO implements DAO, Transform
+class PostDAO implements DAO
 {
   public function getAll()
   {
@@ -113,38 +113,33 @@ class PostDAO implements DAO, Transform
   private function save($data)
   {
     $arrayPosts = [];
-    $post = [];
     if (!file_exists('data'))
       mkdir('data');
     foreach ($data as $value) {
-      array_push($arrayPosts, $this->toArray($value));
+      array_push($arrayPosts, $value->toArray());
     }
     $jsonPosts = json_encode($arrayPosts, JSON_PRETTY_PRINT);
     file_put_contents(POST_PATH, $jsonPosts);
   }
 
-  public function toArray($object)
-  {
-    $post['user'] = $object->user;
-    $post['image'] = $object->image;
-    $post['text'] = $object->text;
-    $post['likes'] = $object->likes;
-    $post['date'] = $object->date;
-    $post['coments'] = $object->coments;
-    $post['id'] = $object->id;
-    $post['disabled'] = $object->disabled;
-    return $post;
-  }
-
   public function toObject($value)
   {
+    $arrayComments = [];
+    if($value['comments']){
+      foreach($value['comments'] as $comment){
+        array_push(
+          $arrayComments,
+          new Comment($comment['user'], $comment['text'], $comment['date'])
+        );
+      }
+    }
     return new Post(
       $value['user'],
       $value['image'],
       $value['text'],
       $value['likes'],
       $value['date'],
-      $value['coments'],
+      $arrayComments,
       $value['id'],
       $value['disabled']
     );
