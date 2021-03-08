@@ -30,7 +30,10 @@ if (isset($_GET['post'])) {
           ';
           }
           ?>
-          <div>like</div>
+          <a href="" class="btn btn-primary">
+            <span class="material-icons">thumb_up</span>
+            <?= intval($post->likes)?>
+          </a>
 
           <ul class="list-group my-1">
             <?php
