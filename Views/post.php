@@ -5,7 +5,7 @@ if (!isset($_SESSION['user']))
 use Controllers\PostController;
 
 include_once('../Controllers/PostController.php');
-$postController = new PostController;
+$postController = new PostController();
 
 if (isset($_GET['post'])) {
   $post = $postController->getById($_GET['post']);
