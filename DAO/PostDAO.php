@@ -113,8 +113,8 @@ class PostDAO implements DAO
   private function save($data)
   {
     $arrayPosts = [];
-    if (!file_exists('data'))
-      mkdir('data');
+    if (!file_exists('../data'))
+      mkdir('../data');
     foreach ($data as $value) {
       array_push($arrayPosts, $value->toArray());
     }
