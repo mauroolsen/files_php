@@ -5,13 +5,24 @@ require_once('./header.php');
 use Controllers\UserController;
 
 if (isset($_POST['login'])) {
+
   include_once('../Controllers/UserController.php');
+
   $userController = new UserController();
-  $userController->login($_POST['username'], $_POST['pass']);
+  $userController->login(
+    ($_POST['username']) ? ($_POST['username']) : '', 
+    ($_POST['pass']) ? ($_POST['pass']) : ''
+  );
 } else if (isset($_POST['register'])) {
+
   include_once('../Controllers/UserController.php');
+  
   $userController = new UserController();
-  $userController->register($_POST['username'], $_POST['email'], $_POST['pass']);
+  $userController->register(
+    ($_POST['username']) ? ($_POST['username']) : '', 
+    ($_POST['email']) ? ($_POST['email']) : '', 
+    ($_POST['pass']) ? ($_POST['pass']) : ''
+  );
 }
 ?>
 
