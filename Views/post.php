@@ -37,7 +37,7 @@ if (isset($_GET['post'])) {
 
           <a href="action.php?like=<?=$post->id?>" class="btn btn-primary">
             <span class="material-icons">thumb_up</span>
-            <?= intval($post->likes)?>
+            <?= count($post->likes)?>
           </a>
 
           <ul class="list-group my-1">

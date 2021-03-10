@@ -35,4 +35,10 @@ if (isset($_SESSION['user'])) {
       (isset($_SESSION['user']['name'])) ? ($_SESSION['user']['name']) : ''
     );
   }
+  if(isset($_GET['like'])){
+    $postController->like(
+      ($_GET['like']), 
+      (isset($_SESSION['user']['name'])) ? ($_SESSION['user']['name']) : ''
+    );
+  }
 }

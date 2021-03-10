@@ -50,9 +50,12 @@ class PostController
     $this->viewController->showHomeView();
   }
 
-  public function edit($post){
+  public function edit($post, $toPost = false){ //$toPost redirecciona al post
     $this->dao->edit($post);
-    $this->viewController->showHomeView();
+    if($toPost)
+      $this->viewController->showPostView($post->id);
+    else
+      $this->viewController->showHomeView();
   }
 
   public function comment($text, $post_id, $username){
@@ -64,7 +67,19 @@ class PostController
     array_push($comments, $comment);
     $post->comments = $comments;
 
-    $this->edit($post);
+    $this->edit($post, true);
+  }
+
+  public function like($post_id, $username){
+    $post = $this->getById($post_id);
+    if($post && array_search($username, $post->likes) === false){
+      $likes = $post->likes;
+      array_push($likes, $username);
+      $post->likes = $likes;
+      $this->edit($post);
+    }else{
+      $this->viewController->showHomeView();
+    }
   }
 
   private function addPost($post){

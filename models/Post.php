@@ -16,7 +16,7 @@ class Post{
     $user = '',
     $image = '',
     $text = '',
-    $likes = 0,
+    $likes = [],
     $date = null,
     $comments = [],
     $id = 0,

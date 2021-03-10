@@ -19,6 +19,14 @@ class ViewController
     }
   }
 
+  public function showPostView($post_id){
+    if (isset($_SESSION['user'])) {
+      header("Location: home.php?post=$post_id");
+    } else {
+      $this->showLoginView();
+    }
+  }
+
   public function showUploadView($id = null)
   {
     if (isset($_SESSION['user'])) {
@@ -36,13 +44,5 @@ class ViewController
     }
     /* if($id)
     $header .= "?edit=$id"; */
-  }
-
-  public function showPostView($post){
-    if (isset($_SESSION['user'])) {
-      header('Location: home.php?post=' . $post);
-    } else {
-      $this->showLoginView();
-    }
   }
 }
