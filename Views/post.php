@@ -35,10 +35,21 @@ if (isset($_GET['post'])) {
           }
           ?>
 
-          <a href="action.php?like=<?=$post->id?>" class="btn btn-primary">
+          <a 
+            href="action.php?like=<?=$post->id?>" 
+            class="btn btn-primary" 
+            data-toggle="tooltip" 
+            data-placement="right" 
+            title="<?php 
+              foreach($post->likes as $liker){
+                echo "$liker, ";
+              }
+            ?>"
+          >
             <span class="material-icons">thumb_up</span>
             <?= count($post->likes)?>
           </a>
+
 
           <ul class="list-group my-1">
             <?php
