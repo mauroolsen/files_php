@@ -10,8 +10,8 @@ if (isset($_POST['login'])) {
 
   $userController = new UserController();
   $userController->login(
-    ($_POST['username']) ? ($_POST['username']) : '', 
-    ($_POST['pass']) ? ($_POST['pass']) : ''
+    (isset($_POST['username'])) ? ($_POST['username']) : '', 
+    (isset($_POST['pass'])) ? ($_POST['pass']) : ''
   );
 } else if (isset($_POST['register'])) {
 
@@ -19,9 +19,9 @@ if (isset($_POST['login'])) {
   
   $userController = new UserController();
   $userController->register(
-    ($_POST['username']) ? ($_POST['username']) : '', 
-    ($_POST['email']) ? ($_POST['email']) : '', 
-    ($_POST['pass']) ? ($_POST['pass']) : ''
+    (isset($_POST['username'])) ? ($_POST['username']) : '', 
+    (isset($_POST['email'])) ? ($_POST['email']) : '', 
+    (isset($_POST['pass'])) ? ($_POST['pass']) : ''
   );
 }
 ?>

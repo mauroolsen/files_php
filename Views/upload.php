@@ -14,9 +14,9 @@ if (!isset($_SESSION['user'])) {
 
     $postController = new PostController();
     $postController->newPost(
-      ($_SESSION['user']['name']) ? ($_SESSION['user']['name']) : '', 
-      ($_FILES['image-post']) ?($_FILES['image-post']) : '', 
-      ($_POST['text']) ? ($_POST['text']) : ''
+      (isset($_SESSION['user']['name'])) ? ($_SESSION['user']['name']) : '', 
+      (isset($_FILES['image-post'])) ?($_FILES['image-post']) : '', 
+      (isset($_POST['text'])) ? ($_POST['text']) : ''
     );
   }
 }

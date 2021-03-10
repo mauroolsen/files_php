@@ -29,6 +29,10 @@ if (isset($_SESSION['user'])) {
     $viewController->showEditView($_GET['edit']);
   }
   if(isset($_POST['comment'])){
-    $postController->comment($_POST['comment'], $_POST['post-id'], $_SESSION['user']['name']);
+    $postController->comment(
+      ($_POST['comment']), 
+      (isset($_POST['post-id'])) ? ($_POST['post-id']) : '', 
+      (isset($_SESSION['user']['name'])) ? ($_SESSION['user']['name']) : ''
+    );
   }
 }

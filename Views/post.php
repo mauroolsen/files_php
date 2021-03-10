@@ -8,7 +8,11 @@ include_once('../Controllers/PostController.php');
 $postController = new PostController();
 
 if (isset($_GET['post'])) {
+
   $post = $postController->getById($_GET['post']);
+  if (!$post)
+    header('location: home.php');
+
 ?>
 
   <div class="post my-3">
@@ -30,7 +34,8 @@ if (isset($_GET['post'])) {
           ';
           }
           ?>
-          <a href="" class="btn btn-primary">
+
+          <a href="action.php?like=<?=$post->id?>" class="btn btn-primary">
             <span class="material-icons">thumb_up</span>
             <?= intval($post->likes)?>
           </a>
