@@ -9,7 +9,7 @@ $postController = new PostController;
 
 if (isset($_GET['profile'])) {
   $posts = array_reverse($postController->getByUser($_GET['profile']));
-  if (!$post)
+  if (!$posts)
     header('location: home.php');
 } else {
   $posts = array_reverse($postController->getAll());

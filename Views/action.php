@@ -41,6 +41,7 @@ if (isset($_SESSION['user'])) {
       (isset($_SESSION['user']['name'])) ? ($_SESSION['user']['name']) : ''
     );
   }
+  $viewController->showHomeView();
 } else {
   if (isset($_POST['login'])) {
     $userController->login(
