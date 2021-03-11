@@ -37,7 +37,11 @@ if (isset($_GET['post'])) {
 
           <a 
             href="action.php?like=<?=$post->id?>" 
-            class="btn btn-primary" 
+            class="btn btn-primary 
+            <?php
+            if(array_search($_SESSION['user']['name'], $post->likes) !== false)
+              echo 'liked';
+            ?>" 
             data-toggle="tooltip" 
             data-placement="right" 
             title="<?php 

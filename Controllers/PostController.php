@@ -73,14 +73,16 @@ class PostController
   public function like($post_id, $username){
     $post = $this->getById($post_id);
     if($post){
-      if(array_search($username, $post->likes) === false){
-        $likes = $post->likes;
+      $user_key = array_search($username, $post->likes);
+      $likes = $post->likes;
+      if($user_key === false){
         array_push($likes, $username);
         $post->likes = $likes;
-        $this->edit($post, true);
       }else{
-        $this->viewController->showPostView($post->id);
+        unset($likes[$user_key]);
       }
+      $post->likes = $likes;
+      $this->edit($post, true);
     }else{
       $this->viewController->showHomeView();
     }

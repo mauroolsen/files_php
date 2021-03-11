@@ -37,3 +37,9 @@ body{
 .list-group-item{
   background-color: #00000042;
 }
+.liked{
+  color:#101f2b;
+}
+.liked:hover{
+  color: #012037;
+}
