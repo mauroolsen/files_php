@@ -22,73 +22,81 @@ class PostController
     $this->viewController = new ViewController();
   }
 
-  public function newPost($username, $img, $text){
+  public function newPost($username, $img, $text)
+  {
     $post = new Post($username, $img, $text);
     $this->addPost($post);
     $this->viewController->showHomeView();
   }
 
-  public function getAll(){
+  public function getAll()
+  {
     return $this->dao->getAll();
   }
 
-  public function getByUser($username){
+  public function getByUser($username)
+  {
     return $this->dao->getByUser($username);
   }
 
-  public function getById($id){
+  public function getById($id)
+  {
     return $this->dao->getById($id);
   }
 
-  public function delete($id){
+  public function delete($id)
+  {
     $post = $this->getById($id);
-    if($post){
-      if($post->user == $_SESSION['user']['name']){
+    if ($post) {
+      if ($post->user == $_SESSION['user']['name']) {
         $this->dao->delete($id);
-      } 
+      }
     }
     $this->viewController->showHomeView();
   }
 
-  public function edit($post, $toPost = false){ //$toPost redirecciona al post
+  public function edit($post, $toPost = false)
+  { //$toPost redirecciona al post
     $this->dao->edit($post);
-    if($toPost)
+    if ($toPost)
       $this->viewController->showPostView($post->id);
     else
       $this->viewController->showHomeView();
   }
 
-  public function comment($text, $post_id, $username){
+  public function comment($text, $post_id, $username)
+  {
     $comment = new Comment($username, $text, date('l jS \of F Y h:i A'));
     $post = $this->getById($post_id);
 
-    // modificar __set()
-    $comments = $post->comments; 
+    $comments = $post->comments;
     array_push($comments, $comment);
     $post->comments = $comments;
 
     $this->edit($post, true);
   }
 
-  public function like($post_id, $username){
+  public function like($post_id, $username)
+  {
     $post = $this->getById($post_id);
-    if($post){
+    if ($post) {
       $user_key = array_search($username, $post->likes);
       $likes = $post->likes;
-      if($user_key === false){
+      if ($user_key === false) {
         array_push($likes, $username);
         $post->likes = $likes;
-      }else{
+      } else {
         unset($likes[$user_key]);
       }
       $post->likes = $likes;
       $this->edit($post, true);
-    }else{
+    } else {
       $this->viewController->showHomeView();
     }
   }
 
-  private function addPost($post){
+  private function addPost($post)
+  {
     $this->dao->add($post);
   }
 }

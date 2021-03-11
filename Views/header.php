@@ -6,7 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../assets/icons/icon.css" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link 
+    rel="stylesheet" 
+    href="../assets/css/bootstrap.min.css" 
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" 
+    crossorigin="anonymous"
+  >
   <link rel="stylesheet" href="../assets/css/styles.css">
 
   <title>Document</title>
@@ -14,7 +19,10 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light justify-content-between" style="background-color: rgb(255 255 255);">
+  <nav 
+    class="navbar navbar-expand-lg navbar-light justify-content-between" 
+    style="background-color: rgb(255 255 255);"
+  >
     <a class="navbar-brand" href="../index.php">IMAGES.PHP</a>
     <?php
     if (isset($_SESSION['user'])) {

@@ -125,8 +125,8 @@ class PostDAO implements DAO
   public function toObject($value)
   {
     $arrayComments = [];
-    if($value['comments']){
-      foreach($value['comments'] as $comment){
+    if ($value['comments']) {
+      foreach ($value['comments'] as $comment) {
         array_push(
           $arrayComments,
           new Comment($comment['user'], $comment['text'], $comment['date'])

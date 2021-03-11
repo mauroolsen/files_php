@@ -84,7 +84,12 @@ class UserDAO implements DAO
       foreach ($data as $value) {
         array_push(
           $users,
-          $this->toObject($value)
+          new User(
+            $value['name'],
+            $value['email'],
+            $value['passHashed'],
+            $value['disabled']
+          )
         );
       }
     }
@@ -97,29 +102,10 @@ class UserDAO implements DAO
     if (!file_exists('data'))
       mkdir('data');
     foreach ($data as $value) {
-      $user = $this->toArray($value);
+      $user = $value->toArray();
       array_push($arrayUsers, $user);
     }
     $jsonUsers = json_encode($arrayUsers, JSON_PRETTY_PRINT);
     file_put_contents(USERS_PATH, $jsonUsers);
-  }
-
-  public function toArray($object)
-  {
-    $value['name'] = $object->name;
-    $value['email'] = $object->email;
-    $value['passHashed'] = $object->passHashed;
-    $value['disabled'] = $object->disabled;
-    return $value;
-  }
-
-  public function toObject($value)
-  {
-    return new User(
-      $value['name'],
-      $value['email'],
-      $value['passHashed'],
-      $value['disabled']
-    );
   }
 }

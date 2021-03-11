@@ -35,7 +35,7 @@ class UserController
   {
     $user = $this->validateUser($name, $pass);
     if ($user) {
-      $_SESSION['user'] = $this->dao->toArray($user);
+      $_SESSION['user'] = $user->toArray();
       $this->viewController->showHomeView();
     } else {
       $this->viewController->showLoginView();
@@ -82,5 +82,4 @@ class UserController
     $user = $this->dao->getByEmail($email);
     return $user;
   }
-
 }

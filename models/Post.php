@@ -1,8 +1,11 @@
-<?php namespace Models;
+<?php
+
+namespace Models;
 
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
-class Post{
+class Post
+{
   private $user;
   private $image;
   private $text;
@@ -21,8 +24,7 @@ class Post{
     $comments = [],
     $id = 0,
     $disabled = false
-  )
-  {
+  ) {
     $this->user = $user;
     $this->image = $image;
     $this->text = $text;
@@ -35,22 +37,23 @@ class Post{
 
   public function __get($property)
   {
-    if(property_exists($this, $property))
+    if (property_exists($this, $property))
       return $this->$property;
   }
 
   public function __set($property, $value)
   {
-    if(property_exists($this, $property)){
+    if (property_exists($this, $property)) {
       $this->$property = $value;
     }
   }
 
-  public function toArray(){
+  public function toArray()
+  {
 
     $arrayComments = [];
-    if($this->comments){
-      foreach($this->comments as $comment){
+    if ($this->comments) {
+      foreach ($this->comments as $comment) {
         array_push($arrayComments, $comment->toArray());
       }
     }

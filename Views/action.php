@@ -28,29 +28,29 @@ if (isset($_SESSION['user'])) {
   if (isset($_GET['edit'])) {
     $viewController->showEditView($_GET['edit']);
   }
-  if(isset($_POST['comment'])){
+  if (isset($_POST['comment'])) {
     $postController->comment(
-      ($_POST['comment']), 
-      (isset($_POST['post-id'])) ? ($_POST['post-id']) : '', 
+      ($_POST['comment']),
+      (isset($_POST['post-id'])) ? ($_POST['post-id']) : '',
       (isset($_SESSION['user']['name'])) ? ($_SESSION['user']['name']) : ''
     );
   }
-  if(isset($_GET['like'])){
+  if (isset($_GET['like'])) {
     $postController->like(
-      ($_GET['like']), 
+      ($_GET['like']),
       (isset($_SESSION['user']['name'])) ? ($_SESSION['user']['name']) : ''
     );
   }
-}else{
+} else {
   if (isset($_POST['login'])) {
     $userController->login(
-      (isset($_POST['username'])) ? ($_POST['username']) : '', 
+      (isset($_POST['username'])) ? ($_POST['username']) : '',
       (isset($_POST['pass'])) ? ($_POST['pass']) : ''
     );
   } else if (isset($_POST['register'])) {
     $userController->register(
-      (isset($_POST['username'])) ? ($_POST['username']) : '', 
-      (isset($_POST['email'])) ? ($_POST['email']) : '', 
+      (isset($_POST['username'])) ? ($_POST['username']) : '',
+      (isset($_POST['email'])) ? ($_POST['email']) : '',
       (isset($_POST['pass'])) ? ($_POST['pass']) : ''
     );
   }

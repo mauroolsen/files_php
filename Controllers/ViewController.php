@@ -19,7 +19,8 @@ class ViewController
     }
   }
 
-  public function showPostView($post_id){
+  public function showPostView($post_id)
+  {
     if (isset($_SESSION['user'])) {
       header("Location: home.php?post=$post_id");
     } else {
@@ -36,7 +37,8 @@ class ViewController
     }
   }
 
-  public function showEditView($id){
+  public function showEditView($id)
+  {
     if (isset($_SESSION['user'])) {
       header('Location: edit.php?post=' . $id);
     } else {

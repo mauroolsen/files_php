@@ -18,7 +18,7 @@ if (!isset($_SESSION['user'])) {
     if (!$post || ($_SESSION['user']['name'] != $post->user))
       header('Location: home.php');
   }
-  
+
   if (isset($_POST['submit'])) {
     $post->text = (isset($_POST['text'])) ? ($_POST['text']) : '';
     $postController->edit($post);
@@ -32,7 +32,15 @@ if (!isset($_SESSION['user'])) {
       <img class="img-fluid mb-3" src="<?= $post->image ?>" alt="" srcset="">
       <div class="form-group">
         <label for="text">Texto</label>
-        <input type="text" class="form-control" placeholder="Texto..." name="text" id="text" value="<?= $post->text ?>" onkeyup="" />
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Texto..." 
+          name="text" 
+          id="text" 
+          value="<?= $post->text ?>" 
+          onkeyup="" 
+        />
       </div>
       <button class="btn btn-primary col-10 offset-1" type="submit" name="submit" id="edit">
         Edit

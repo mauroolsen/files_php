@@ -1,11 +1,14 @@
-<?php namespace Models;
+<?php
 
-class User{
+namespace Models;
+
+class User
+{
   private $name;
   private $email;
   private $passHashed;
   private $disabled;
-  
+
   public function __construct($name = '', $email = '', $passHashed = '', $disabled = false)
   {
     $this->name = $name;
@@ -16,14 +19,23 @@ class User{
 
   public function __get($property)
   {
-    if(property_exists($this, $property))
+    if (property_exists($this, $property))
       return $this->$property;
   }
 
   public function __set($property, $value)
   {
-    if(property_exists($this, $property)){
+    if (property_exists($this, $property)) {
       $this->$property = $value;
     }
+  }
+
+  public function toArray()
+  {
+    $value['name'] = $this->name;
+    $value['email'] = $this->email;
+    $value['passHashed'] = $this->passHashed;
+    $value['disabled'] = $this->disabled;
+    return $value;
   }
 }

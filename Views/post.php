@@ -10,9 +10,11 @@ $postController = new PostController();
 if (isset($_GET['post'])) {
 
   $post = $postController->getById($_GET['post']);
+
   if (!$post)
     header('location: home.php');
 
+  $liked = (array_search($_SESSION['user']['name'], $post->likes) !== false) ? 'liked' : '';
 ?>
 
   <div class="post my-3">
@@ -36,22 +38,14 @@ if (isset($_GET['post'])) {
           ?>
 
           <a 
-            href="action.php?like=<?=$post->id?>" 
-            class="btn btn-primary 
-            <?php
-            if(array_search($_SESSION['user']['name'], $post->likes) !== false)
-              echo 'liked';
-            ?>" 
+            href="action.php?like=<?= $post->id ?>" 
+            class="btn btn-primary <?= $liked ?>"
             data-toggle="tooltip" 
             data-placement="right" 
-            title="<?php 
-              foreach($post->likes as $liker){
-                echo "$liker, ";
-              }
-            ?>"
+            title="<?= implode(', ', $post->likes) ?>"
           >
             <span class="material-icons">thumb_up</span>
-            <?= count($post->likes)?>
+            <?= count($post->likes) ?>
           </a>
 
 
@@ -60,7 +54,7 @@ if (isset($_GET['post'])) {
             foreach ($post->comments as $comment) {
             ?>
               <li class="list-group-item my-1">
-                <small><?= $comment->date?></small><br>
+                <small><?= $comment->date ?></small><br>
                 <p style="padding-left:20px;"><?= $comment->user . ': ' . $comment->text ?></p>
               </li>
             <?php
@@ -69,9 +63,18 @@ if (isset($_GET['post'])) {
           </ul>
 
           <form class="form" action="action.php" method="post">
-            <input type="hidden" value="<?= $post->id ?>" name="post-id">
+            <input 
+              type="hidden" 
+              value="<?= $post->id ?>" 
+              name="post-id"
+            />
             <div class="input-group">
-              <input type="text" class="form-control" name="comment" placeholder="Comentario...">
+              <input 
+                type="text" 
+                class="form-control" 
+                name="comment" 
+                placeholder="Comentario..."
+              />
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit">Comentar</button>
               </div>
