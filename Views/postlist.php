@@ -29,7 +29,6 @@ if (isset($_GET['profile'])) {
           <h5 class="card-title text-uppercase"><?= $post->user ?></h5>
           <small><?= $post->date ?></small>
           <p class="card-text font-weight-bold"><?= $post->text ?></p>
-          likes
         </div>
       </div>
 

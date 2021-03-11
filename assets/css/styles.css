@@ -8,6 +8,16 @@ body{
 .card:hover{
   background-color: #9dc0db;
 }
+.card-text{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.card-img-top{
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
 .visuallyhidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -25,11 +35,6 @@ body{
 .img-thumbnail{
   border: none;
   background-color: #474a4b;
-}
-.card-img-top{
-  width: 100%; 
-  height: 67%; 
-  object-fit: cover;
 }
 .post{
   background-color: #00000042;
