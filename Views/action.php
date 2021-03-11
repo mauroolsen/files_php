@@ -41,4 +41,17 @@ if (isset($_SESSION['user'])) {
       (isset($_SESSION['user']['name'])) ? ($_SESSION['user']['name']) : ''
     );
   }
+}else{
+  if (isset($_POST['login'])) {
+    $userController->login(
+      (isset($_POST['username'])) ? ($_POST['username']) : '', 
+      (isset($_POST['pass'])) ? ($_POST['pass']) : ''
+    );
+  } else if (isset($_POST['register'])) {
+    $userController->register(
+      (isset($_POST['username'])) ? ($_POST['username']) : '', 
+      (isset($_POST['email'])) ? ($_POST['email']) : '', 
+      (isset($_POST['pass'])) ? ($_POST['pass']) : ''
+    );
+  }
 }

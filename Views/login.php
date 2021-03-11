@@ -1,34 +1,10 @@
 <?php
-
 require_once('./header.php');
-
-use Controllers\UserController;
-
-if (isset($_POST['login'])) {
-
-  include_once('../Controllers/UserController.php');
-
-  $userController = new UserController();
-  $userController->login(
-    (isset($_POST['username'])) ? ($_POST['username']) : '', 
-    (isset($_POST['pass'])) ? ($_POST['pass']) : ''
-  );
-} else if (isset($_POST['register'])) {
-
-  include_once('../Controllers/UserController.php');
-  
-  $userController = new UserController();
-  $userController->register(
-    (isset($_POST['username'])) ? ($_POST['username']) : '', 
-    (isset($_POST['email'])) ? ($_POST['email']) : '', 
-    (isset($_POST['pass'])) ? ($_POST['pass']) : ''
-  );
-}
 ?>
 
 <div class="container my-4">
   <div class="row mx-auto">
-    <form class="form col-5 alert alert-success mx-auto" action="" method="POST">
+    <form class="form col-5 alert alert-success mx-auto" action="action.php" method="POST">
       <input type="hidden" value="true" name="login">
       <div class="form-group">
         <label for="username">Nombre de usuario</label>
@@ -43,7 +19,7 @@ if (isset($_POST['login'])) {
       </button>
     </form>
 
-    <form class="form col-5 alert alert-info mx-auto" action="" method="POST">
+    <form class="form col-5 alert alert-info mx-auto" action="action.php" method="POST">
       <input type="hidden" value="true" name="register">
       <div class="form-group">
         <label for="username">Nombre de usuario <small>/* mayor a 7 caracteres */</small></label>
