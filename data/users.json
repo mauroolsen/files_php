@@ -28,5 +28,11 @@
         "email": "andres@gmail.com",
         "passHashed": "$2y$10$.oYq223ob7bwNulK6tWRu.tNkiSLL3cdq5aUMp8AsCNNyuTpspVYy",
         "disabled": false
+    },
+    {
+        "name": "Nicolas Moretti",
+        "email": "nico@gmail.com",
+        "passHashed": "$2y$10$o5BF\/0qny1j72Yp7qRz9TOGr6U9IIfZJCgCiv3ShvctG4JatAFQ92",
+        "disabled": false
     }
 ]

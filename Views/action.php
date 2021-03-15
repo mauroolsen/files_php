@@ -56,5 +56,8 @@ if (isset($_SESSION['user'])) {
       (isset($_POST['email'])) ? ($_POST['email']) : '',
       (isset($_POST['pass'])) ? ($_POST['pass']) : ''
     );
+  } else {
+    $viewController = new ViewController();
+    $viewController->showHomeView();
   }
 }

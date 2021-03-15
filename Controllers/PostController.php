@@ -66,7 +66,7 @@ class PostController
 
   public function comment($text, $post_id, $username)
   {
-    $comment = new Comment($username, $text, date('l jS \of F Y h:i A'));
+    $comment = new Comment($username, $text);
     $post = $this->getById($post_id);
 
     $comments = $post->comments;

@@ -8,11 +8,11 @@ class Comment
   private $text;
   private $date;
 
-  function __construct($user, $text, $date)
+  function __construct($user, $text)
   {
     $this->user = $user;
     $this->text = $text;
-    $this->date = $date;
+    $this->date = date('l jS \of F Y h:i A');
   }
   public function __get($property)
   {
