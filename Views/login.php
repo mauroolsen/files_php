@@ -1,7 +1,3 @@
-<?php
-require_once('./header.php');
-?>
-
 <div class="container my-4">
   <div class="row mx-auto">
 

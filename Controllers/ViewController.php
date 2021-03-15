@@ -44,7 +44,5 @@ class ViewController
     } else {
       $this->showLoginView();
     }
-    /* if($id)
-    $header .= "?edit=$id"; */
   }
 }

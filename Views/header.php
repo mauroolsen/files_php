@@ -23,7 +23,7 @@
     class="navbar navbar-expand-lg navbar-light justify-content-between" 
     style="background-color: rgb(255 255 255);"
   >
-    <a class="navbar-brand" href="../index.php">IMAGES.PHP</a>
+    <a class="navbar-brand" href="./home.php">IMAGES.PHP</a>
     <?php
     if (isset($_SESSION['user'])) {
       echo '
