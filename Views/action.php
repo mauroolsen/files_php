@@ -17,6 +17,14 @@ if (isset($_SESSION['user'])) {
   if (isset($_GET['upload'])) {
     $viewController->showUploadView();
   }
+  if (isset($_POST['uploadSubmit'])) {
+    $postController = new PostController();
+    $postController->newPost(
+      (isset($_SESSION['user']['name'])) ? ($_SESSION['user']['name']) : '',
+      (isset($_FILES['image-post'])) ? ($_FILES['image-post']) : '',
+      (isset($_POST['text'])) ? ($_POST['text']) : ''
+    );
+  }
   if (isset($_GET['post'])) {
     $viewController->showPostView($_GET['post']);
   }
@@ -26,6 +34,12 @@ if (isset($_SESSION['user'])) {
   }
   if (isset($_GET['edit'])) {
     $viewController->showEditView($_GET['edit']);
+  }
+  if (isset($_POST['editSubmit']) && isset($_POST['postId'])) {
+    $postController = new PostController();
+    $post = $postController->getById($_POST['postId']);
+    $post->text = (isset($_POST['text'])) ? ($_POST['text']) : '';
+    $postController->edit($post);
   }
   if (isset($_POST['comment'])) {
     $postController = new PostController();

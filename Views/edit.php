@@ -10,25 +10,21 @@ if (!isset($_SESSION['user'])) {
 } else {
 
   include_once('../Controllers/PostController.php');
-
-  $postController = new PostController();
+  
   if (isset($_GET['post'])) {
-
+    $postController = new PostController();
     $post = $postController->getById($_GET['post']);
     if (!$post || ($_SESSION['user']['name'] != $post->user))
       header('Location: home.php');
-  }
-
-  if (isset($_POST['submit'])) {
-    $post->text = (isset($_POST['text'])) ? ($_POST['text']) : '';
-    $postController->edit($post);
   }
 }
 ?>
 
 <div class="container my-4">
   <div class="row mx-auto">
-    <form class="form col-5 alert alert-success mx-auto" action="" method="POST" enctype="multipart/form-data">
+    <form class="form col-5 alert alert-success mx-auto" action="action.php" method="POST" enctype="multipart/form-data">
+      <input type="hidden" value="true" name="editSubmit"/>
+      <input type="hidden" value="<?=$post->id?>" name="postId"/>
       <img class="img-fluid mb-3" src="<?= $post->image ?>" alt="" srcset="">
       <div class="form-group">
         <label for="text">Texto</label>
